@@ -1,0 +1,55 @@
+spec-version: 0.36.0
+
+name:                day5-part2
+version:             0.1.0.0
+github:              "mpilgrem/aoc-solutions/day5-part2"
+license:             BSD-3-Clause
+author:              "Mike Pilgrem"
+maintainer:          "public@pilgrem.com"
+copyright:           "Copyright 2025"
+
+extra-source-files:
+- README.md
+- CHANGELOG.md
+
+description: Haskell solution for Advent of Code 2025, Day 5, Part 2.
+
+dependencies:
+- base >= 4.7 && < 5
+- aoc-utils
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wmissing-export-lists
+- -Wmissing-home-modules
+- -Wpartial-fields
+- -Wredundant-constraints
+
+library:
+  source-dirs: src
+
+executables:
+  day5-part2:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - day5-part2
+
+tests:
+  day5-part2-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - day5-part2

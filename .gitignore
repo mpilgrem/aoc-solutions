@@ -1,0 +1,6 @@
+.stack-work/
+*~
+
+# Advent of Code-related
+**/test/data.txt
+**/input.txt

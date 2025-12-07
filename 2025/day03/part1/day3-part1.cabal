@@ -1,0 +1,59 @@
+cabal-version: 2.2
+
+-- This file has been generated from package.yaml by hpack version 0.38.3.
+--
+-- see: https://github.com/sol/hpack
+
+name:           day3-part1
+version:        0.1.0.0
+description:    Haskell solution for Advent of Code 2025, Day 3, Part 1.
+homepage:       https://github.com/mpilgrem/aoc-solutions#readme
+bug-reports:    https://github.com/mpilgrem/aoc-solutions/issues
+author:         Mike Pilgrem
+maintainer:     public@pilgrem.com
+copyright:      Copyright 2025
+license:        BSD-3-Clause
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    CHANGELOG.md
+
+source-repository head
+  type: git
+  location: https://github.com/mpilgrem/aoc-solutions
+  subdir: day3-part1
+
+library
+  exposed-modules:
+      Day3.Part1
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
+  build-depends:
+      aoc-utils
+    , base >=4.7 && <5
+  default-language: Haskell2010
+
+executable day3-part1
+  main-is: Main.hs
+  hs-source-dirs:
+      app
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aoc-utils
+    , base >=4.7 && <5
+    , day3-part1
+  default-language: Haskell2010
+
+test-suite day3-part1-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  hs-source-dirs:
+      test
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aoc-utils
+    , base >=4.7 && <5
+    , day3-part1
+  default-language: Haskell2010

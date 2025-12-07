@@ -1,0 +1,17 @@
+snapshot: lts-24.22 # GHC 9.10.3
+packages:
+- .
+- 2025/day01/part1
+- 2025/day01/part2
+- 2025/day02/part1
+- 2025/day02/part2
+- 2025/day03/part1
+- 2025/day03/part2
+- 2025/day04/part1
+- 2025/day04/part2
+- 2025/day05/part1
+- 2025/day05/part2
+- 2025/day06/part1
+- 2025/day06/part2
+- 2025/day07/part1
+- 2025/day07/part2
