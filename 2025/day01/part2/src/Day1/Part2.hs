@@ -3,25 +3,7 @@ module Day1.Part2
   ) where
 
 solution :: String -> Int
-solution = password 50 . readMoves
-
-count ::
-     Int
-     -- ^ Count so far
-  -> Int
-     -- ^ Pointer
-  -> Int
-     -- ^ Move
-  -> (Int, Int)
-count password' pointer move =
-  let (full, part) = move `quotRem` 100
-      pointer' = pointer + part
-      pointer'' = pointer' `mod` 100
-      rotations = abs full
-      password'' = rotations + if pointer /= 0 && (pointer' <=0 || pointer' >= 100)
-        then password' + 1
-        else password'
-  in (password'', pointer'')
+solution = password 50 . readMoves . lines
 
 password ::
      Int
@@ -34,15 +16,33 @@ password pointer moves =
   let i = (0, pointer)
   in  fst $ foldl' (uncurry count) i moves
 
-readMoves :: String -> [Int]
-readMoves s = map readMove $ lines s
+count ::
+     Int
+     -- ^ Count so far
+  -> Int
+     -- ^ Pointer
+  -> Int
+     -- ^ Move
+  -> (Int, Int)
+count acc pointer move =
+  let (full, part) = move `quotRem` 100
+      pointer' = pointer + part
+      pointer'' = pointer' `mod` 100
+      rotations = abs full
+      acc' = rotations + if pointer /= 0 && (pointer' <=0 || pointer' >= 100)
+        then acc + 1
+        else acc
+  in (acc', pointer'')
+
+readMoves :: [String] -> [Int]
+readMoves = map readMove
 
 readMove :: String -> Int
 readMove [] = error "No move"
 readMove [c] = error $ "Invalid move: " <> [c]
-readMove (i: cs) = case i of
-  'L' -> - readValue cs
-  'R' -> readValue cs
+readMove (i : s) = case i of
+  'L' -> - readValue s
+  'R' -> readValue s
   _ -> error $ "Invalid code: " <> [i]
 
 readValue :: String -> Int
