@@ -2,6 +2,7 @@ module Day5.Part2
   ( solution
   ) where
 
+import           AdventOfCode ( breakUpWith )
 import           Data.List ( sort )
 
 data Range = Range !Int !Int
@@ -36,17 +37,11 @@ rangeSize (Range l h) = h - l + 1
 readDb :: String -> ([Range], [Int])
 readDb s =
   let ls = lines s
-      (rs', is'') = break (== "") ls
-      rs = sort $ map readRange rs'
-      is = case is'' of
-             [] -> error "Second part of the database is missing!"
-             (_ : is') -> map read is'
-  in  (rs, is)
+  in  case breakUpWith "" ls of
+        [rs', is'] -> (sort $ map readRange rs', map read is')
+        _ -> error "Cannot parse as a database"
 
 readRange :: String -> Range
-readRange s =
-  let (l, h') = break (== '-') s
-      h = case h' of
-            [] -> error "Second part of range is missing!"
-            (_ : h'') -> h''
-  in  Range (read l) (read h)
+readRange s = case breakUpWith '-' s of
+  [l, h] -> Range (read l) (read h)
+  _ -> error $ "Cannot parse as range: " <> s

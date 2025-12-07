@@ -2,33 +2,24 @@ module Day2.Part2
   ( solution
   ) where
 
+import           AdventOfCode ( breakUpWith )
+
 solution :: String -> Int
-solution = sum . map sumInvalid . breakUp
+solution = sum . map sumInvalid . breakUpWith ','
 
 validId :: String -> Bool
 validId s = notElem s $ badIds s
 
 toRange :: String -> (Int, Int)
-toRange s =
-  let (firstPart, secondPart') = break (== '-') s
-  in  case secondPart' of
-        [] -> error "Second part of range is missing"
-        (_ : secondPart) -> (read firstPart, read secondPart)
+toRange s = case breakUpWith '-' s of
+    [firstPart, secondPart] -> (read firstPart, read secondPart)
+    _ -> error $ "Cannot parse as range: " <> s
 
 ids :: (Int, Int) -> [String]
 ids (low, high) = map show [low .. high]
 
 sumInvalid :: String -> Int
 sumInvalid = sum . map read . filter (not . validId) . ids . toRange
-
-breakUp :: String -> [String]
-breakUp s =
-  let (first, rest) = break (== ',') s
-  in  case rest of
-        "" -> [first]
-        "," -> [first]
-        (',' : cs) -> first : breakUp cs
-        _ -> error "The impossible happened!"
 
 badId :: Int -> String -> String
 badId n stub = concat $ replicate n stub

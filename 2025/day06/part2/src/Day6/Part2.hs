@@ -2,6 +2,7 @@ module Day6.Part2
   ( solution
   ) where
 
+import           AdventOfCode ( breakUp )
 import           Data.List ( transpose, unsnoc )
 import           Data.Maybe ( fromMaybe )
 
@@ -21,13 +22,7 @@ readLines s =
 
 toNums :: [String] -> [[Int]]
 toNums [] = [[]]
-toNums nss =
-  let (nums', rest') = break isBlank nss
-      nums = map read nums'
-  in  case rest' of
-        [] -> [nums]
-        [_] -> [nums]
-        (_ : rest) -> nums : toNums rest
+toNums nss = map (map read) $ breakUp isBlank nss
  where
   isBlank = all (== ' ')
 
