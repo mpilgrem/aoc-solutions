@@ -1,0 +1,57 @@
+spec-version: 0.36.0
+
+name:                day10-part2
+version:             0.1.0.0
+github:              "mpilgrem/day10-part2"
+license:             BSD-3-Clause
+author:              "Mike Pilgrem"
+maintainer:          "public@pilgrem.com"
+copyright:           "Copyright 2025"
+
+extra-source-files:
+- README.md
+- CHANGELOG.md
+
+description: Haskell solution for Advent of Code 2025, Day 10, Part 2.
+
+dependencies:
+- base >= 4.7 && < 5
+- aoc-utils
+- containers
+- vector
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wmissing-export-lists
+- -Wmissing-home-modules
+- -Wpartial-fields
+- -Wredundant-constraints
+
+library:
+  source-dirs: src
+
+executables:
+  day10-part2:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - day10-part2
+
+tests:
+  day10-part2-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - day10-part2
