@@ -15,6 +15,7 @@ description: Haskell solution for Advent of Code 2025, Day 10, Part 1.
 dependencies:
 - base >= 4.7 && < 5
 - aoc-utils
+- containers
 - vector
 
 ghc-options:
